@@ -1,63 +1,41 @@
 (ERROR) @error
 
-[
-    (line_comment)
-    (block_comment)
-] @comment
+(comment) @comment
 
-(identifier) @variable
-(import_path) @variable
+; Literals
+(number_literal) @number
+(string_literal) @string
+(interpolated_string) @string
+(nil_literal) @constant.builtin
+(this_expression) @variable.builtin
 
-(parameter_declaration
-  name: (identifier) @parameter)
-(function_declaration
-  name: (identifier) @function)
-(function_declaration
-  receiver: (receiver)
-  name: (identifier) @method)
+; Booleans
+"true" @boolean
+"false" @boolean
 
-(short_lambda
-  (reference_expression) @parameter)
-
-(field_name) @property
-
-
-(int_literal) @number
-(interpreted_string_literal) @string
-(escape_sequence) @string.escape
-
+; Keywords
 [
  "as"
- "assert"
- "break"
- "const"
- "continue"
+ "async"
+ "await"
+ "catch"
+ "class"
  "else"
  "enum"
  "fn"
  "for"
- "$for"
- "go"
  "if"
- "$if"
  "import"
- "in"
- "!in"
- "interface"
- "is"
- "!is"
- "lock"
+ "let"
  "match"
- "pub"
+ "module"
  "return"
  "struct"
+ "try"
+ "while"
 ] @keyword
 
-[
-    (true)
-    (false)
-] @boolean
-
+; Punctuation
 [
     "."
     ","
@@ -74,47 +52,29 @@
  "]"
 ] @punctuation.bracket
 
-(array_creation) @punctuation.bracket
-
+; Operators
 [
  "++"
  "--"
-
  "+"
  "-"
  "*"
  "/"
  "%"
-
- "~"
- "&"
- "|"
- "^"
-
  "!"
  "&&"
  "||"
  "!="
-
- "<<"
- ">>"
-
  "<"
  ">"
  "<="
  ">="
-
  "+="
  "-="
  "*="
  "/="
  "|="
-
  "="
- ":="
  "=="
-
- "?"
- "$"
- ".."
+ "=>"
 ] @operator
